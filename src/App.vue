@@ -1,11 +1,18 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
+<script>
+  import Home from './components/Home.vue';
+
+  export default {
+    components: {
+      Home,
+    }
+  }
+
 </script>
 
 <template>
-  <HelloWorld msg="Vite + Vue" />
+  <Home />  
 </template>
 
-<style scoped>
+<style>
 
 </style>
