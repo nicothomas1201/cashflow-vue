@@ -10,7 +10,7 @@
         :amount="amount"
       >
         <template #graphic>
-          <Graphic></Graphic>
+          <Graphic :amounts="amounts" />
         </template>
         <template #action>
           <Action />
@@ -46,6 +46,7 @@
       return {
         label: null,
         amount: null,
+        amounts: [100, 200, 500, 200, -400, -600, -300, 0, 300, 500],
         movements: [
           {
             id: 1,
