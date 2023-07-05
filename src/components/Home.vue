@@ -4,7 +4,11 @@
       <Header />
     </template>
     <template #resume>
-      <Resume />
+      <Resume
+        :label="'Junio 2023'"
+        :total-amount="100000"
+        :amount="10000"
+      />
     </template>
     <template #movements>
       <Movements />
