@@ -2,7 +2,7 @@
 
 <template>
   <main>
-    <p>{{ label }}</p>
+    <p>{{ labelVisual }}</p>
     <h1>{{ amountCurrency }}</h1>
     <div class="graphic">
       <slot name="graphic"></slot>
@@ -40,7 +40,10 @@
       },
       amountCurrency(){
         return currencyFormater.format(this.amountVisual)
-      }         
+      },
+      labelVisual(){
+        return this.label ? this.label : "Ahorro Total"
+      }      
     }
   }
 </script>
