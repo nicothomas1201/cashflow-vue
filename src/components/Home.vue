@@ -8,7 +8,14 @@
         :label="'Junio 2023'"
         :total-amount="100000"
         :amount="10000"
-      />
+      >
+        <template #graphic>
+          Graphic
+        </template>
+        <template #action>
+          Button
+        </template>
+      </Resume>
     </template>
     <template #movements>
       <Movements />
