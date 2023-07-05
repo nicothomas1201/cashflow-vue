@@ -2,16 +2,62 @@
   <button @click="showModal = true" >Agregar Movimiento</button>  
 
   <teleport to="#app">
-    <Modal v-show="showModal" @close="showModal = false"></Modal>
+    <Modal v-show="showModal" @close="showModal = false">
+      <form @submit.prevent="submit">
+        <div class="field">
+          <label for="title">Titulo</label>
+          <input type="text" id="title" v-model="title">
+        </div>
+
+        <div class="field">
+          <label for="amount">Monto</label>
+          <input type="number" id="amount" v-model="amount">
+        </div>
+
+        <div class="field">
+          <label for="description">Descripción</label>
+          <textarea 
+            type="text" 
+            id="description" 
+            v-model="description"
+            rows="4"
+          >
+          </textarea>
+        </div>
+
+        <div class="field">
+          <label>Tipo de movimiento</label>
+          <label class="radio-label">
+            <input type="radio" v-model="movementsType" value="Ingreso" />
+            <span>Ingreso</span>
+          </label>
+          <label class="radio-label">
+            <input type="radio" v-model="movementsType" value="Gasto" />
+            <span>Gasto</span>
+          </label>
+        </div>  
+        <div class="action">
+          <button>Agregar Movimiento</button>
+        </div>      
+      </form>
+    </Modal>
   </teleport>
-  
 </template>
 
 <script setup>
   import { ref } from 'vue';
   import Modal from "./Modal.vue"
 
-  let showModal = ref(false)
+  const showModal = ref(false)
+  const title = ref("")
+  const amount = ref(0)
+  const description = ref("")
+  const movementsType = ref("Ingreso")
+
+  const submit = () => {
+    showModal.value = !showModal.value
+  }
+
 </script>
 
 <style scoped>
