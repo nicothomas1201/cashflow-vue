@@ -13,7 +13,7 @@
           Graphic
         </template>
         <template #action>
-          Button
+          <Action />
         </template>
       </Resume>
     </template>
@@ -28,6 +28,7 @@
 <script>
   import Layout from './Layout.vue';
   import Header from './Header.vue';
+  import Action from './Action.vue';
   import Resume from './Resume/Index.vue';
   import Movements from './Movements/Index.vue';
 
@@ -37,6 +38,7 @@
       Header,
       Resume,
       Movements,
+      Action
     },
     data(){
       return {
