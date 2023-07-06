@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-  import { defineProps, toRefs, computed, ref, defineEmits } from 'vue';
+  import { defineProps, toRefs, computed, ref, defineEmits, watch } from 'vue';
 
   const emit = defineEmits(["select"])
 
@@ -66,7 +66,7 @@
       const y = amountsToPixels(amount)
       return `${points} ${x},${y}`
 
-    }, "0,100")
+    }, `0, ${amountsToPixels(amounts.value.length ? amounts.value[0] : 0)}`)
   })
 
   const zero = computed(() => {
@@ -76,6 +76,16 @@
   const showPointer = ref(false)
   const pointer = ref(0)
 
+  watch(pointer, (value) => {
+    const index = Math.ceil((value / (300 / amounts.value.length)))
+    if(index < 0 || index > amounts.value.length) return 
+
+    emit("select", amounts.value[index - 1])
+
+
+
+  })
+
   function tap({ target, touches }){
     showPointer.value = true
     const elementWidth = target.getBoundingClientRect().width
@@ -84,8 +94,9 @@
     // la coordenada donde se hizo el touch
     const touchX = touches[0].clientX
     pointer.value = ((touchX - elementX) * 300) / elementWidth
-
   }
+
+
 
   function untap(){
     showPointer.value = false
