@@ -46,39 +46,97 @@
       return {
         label: null,
         amount: null,
-        amounts: [100, 200, 500, 200, -400, -600, -300, 0, 300, 500],
+        // amounts: [100, 200, 500, 200, -400, -600, -300, 0, 300, 500],
         movements: [
           {
             id: 1,
-            title: "Movimiento",
+            title: "Movimiento 1",
             description: "Deposito de salario",
-            amount: "1000",
+            amount: 100,
+            time: new Date("07-02-2023"),
           },
           {
             id: 2,
-            title: "Movimiento 1",
+            title: "Movimiento 2",
             description: "Deposito de honorarios",
-            amount: "500",
+            amount: 200,
+            time: new Date("07-02-2023"),
           },
           {
             id: 3,
             title: "Movimiento 3",
             description: "Comida",
-            amount: "-100",
+            amount: 500,
+            time: new Date("07-02-2023"),
           },
           {
             id: 4,
             title: "Movimiento 4",
             description: "Colegiatura",
-            amount: "1000",
+            amount: 200,
+            time: new Date("07-02-2023"),
           },
           {
             id: 5,
             title: "Movimiento 5",
             description: "Reparación equipo",
-            amount: "1000",
+            amount: -400,
+            time: new Date("07-02-2023"),
+          },
+          {
+            id: 6,
+            title: "Movimiento 6",
+            description: "Reparación equipo",
+            amount: -600,
+            time: new Date("07-02-2023"),
+          },
+          {
+            id: 7,
+            title: "Movimiento 7",
+            description: "Reparación equipo",
+            amount: -300,
+            time: new Date("07-02-2023"),
+          },
+          {
+            id: 8,
+            title: "Movimiento 8",
+            description: "Reparación equipo",
+            amount: 0,
+            time: new Date("07-02-2023"),
+          },
+          {
+            id: 9,
+            title: "Movimiento 9",
+            description: "Reparación equipo",
+            amount: 300,
+            time: new Date("03-01-2023"),
+          },
+          {
+            id: 10,
+            title: "Movimiento 10",
+            description: "Reparación equipo",
+            amount: 500,
+            time: new Date("03-01-2023"),
           },
         ]
+      }
+    },
+    computed: {
+      amounts(){
+        const lastDays = this.movements.filter(m => {
+          const today = new Date()
+          const oldDate = today.setDate(today.getDate() - 30)
+          console.log(m.time)
+          return m.time > oldDate
+        }).map(m => m.amount)
+
+        return lastDays.map((m, i) => {
+          const lastMovements = lastDays.slice(0, i)
+
+          return lastMovements.reduce(( suma, movement ) => {
+            return suma + movement
+          }, 0)
+        })
       }
     }
   }

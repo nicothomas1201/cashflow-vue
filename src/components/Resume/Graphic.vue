@@ -5,6 +5,7 @@
       @touchmove="tap"
       @touchend="untap"
       view-box="0 0 300 200"
+      height="200"
     >
       <line 
         stroke="#c4c4c4"
@@ -35,7 +36,9 @@
 </template>
 
 <script setup>
-  import { defineProps, toRefs, computed, ref } from 'vue';
+  import { defineProps, toRefs, computed, ref, defineEmits } from 'vue';
+
+  const emit = defineEmits(["select"])
 
   const props = defineProps({
     amounts: {
