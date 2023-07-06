@@ -13,13 +13,16 @@
           <Graphic :amounts="amounts" />
         </template>
         <template #action>
-          <Action />
+          <Action
+            @create="create" 
+          />
         </template>
       </Resume>
     </template>
     <template #movements>
       <Movements
         :movements="movements" 
+        @remove="remove"
       />
     </template>
   </Layout>
@@ -126,7 +129,6 @@
         const lastDays = this.movements.filter(m => {
           const today = new Date()
           const oldDate = today.setDate(today.getDate() - 30)
-          console.log(m.time)
           return m.time > oldDate
         }).map(m => m.amount)
 
@@ -137,6 +139,15 @@
             return suma + movement
           }, 0)
         })
+      }
+    },
+    methods: {
+      create(movement){
+        this.movements.push(movement)
+      },
+      remove(id){
+        // console.log(id)
+        this.movements = this.movements.filter((item) => item.id !== id)
       }
     }
   }
